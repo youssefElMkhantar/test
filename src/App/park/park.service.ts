@@ -7,8 +7,8 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 export class ParkService {
   domaineParkService;
   constructor(
-    vehicleRepositoryService: VehicleRepositoryService,
-    fleetRepositoryService: FleetRepositoryService,
+    private readonly vehicleRepositoryService: VehicleRepositoryService,
+    private readonly fleetRepositoryService: FleetRepositoryService,
   ) {
     this.domaineParkService = new DomaineParkService(
       vehicleRepositoryService,
@@ -22,5 +22,13 @@ export class ParkService {
       throw new BadRequestException(newFleet);
     }
     return newFleet;
+  }
+
+  async getLocation(vehicleId: number) {
+    const vehicle = await this.vehicleRepositoryService.findById(vehicleId);
+    if (!vehicle) {
+      throw new BadRequestException("vehicle doesn't exists");
+    }
+    return vehicle.location;
   }
 }

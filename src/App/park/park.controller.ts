@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get, Query } from '@nestjs/common';
 import { ParkService } from './park.service';
 
 @Controller('')
@@ -10,7 +10,11 @@ export class ParkController {
     @Body('vehicleId') vehicleId: number,
     @Body('fleetId') fleetId: number,
   ) {
-    console.log(vehicleId, fleetId);
     return this.parkService.park(vehicleId, fleetId);
+  }
+
+  @Get('location')
+  location(@Query('vehicleId') vehicleId: number) {
+    return this.parkService.getLocation(vehicleId);
   }
 }
