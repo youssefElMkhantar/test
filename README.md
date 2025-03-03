@@ -46,3 +46,10 @@ $ npm run test:e2e
 # password and username in the env file
 
 ```
+
+## docs from openAPI swagger in localhost:3000/api
+
+```bash
+# you can follow the specs for testing with postman
+
+```
