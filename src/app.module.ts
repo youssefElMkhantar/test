@@ -14,7 +14,7 @@ import { ParkModule } from './app/park/park.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Make the ConfigModule globally available
-      envFilePath: '.env', // Define the path to the .env file
+      envFilePath: process.env.NODE_ENV === 'test' ? '.env.test' : '.env', // Define the path to the .env file
     }),
     // Setup TypeORM module using ConfigService to get environment variables
     TypeOrmModule.forRootAsync({
@@ -28,10 +28,7 @@ import { ParkModule } from './app/park/park.module';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         entities: [Fleet, Vehicle], // Add your entities here
-        synchronize:
-          configService.get<string>('NODE_ENV') === 'development'
-            ? true
-            : false, // Set to `false` in production
+        synchronize: true,
       }),
     }),
     VehicleRepositoryModule,

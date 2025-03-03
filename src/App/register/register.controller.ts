@@ -4,6 +4,7 @@ import DomainFleet from 'src/Domain/Entities/Fleet';
 import DomainVehicle from 'src/Domain/Entities/Vehicle';
 import { vehicleDTO } from './DTOs/vehicle.dto';
 import { fleetDTO } from './DTOs/fleet.dto';
+import { registerDTO } from './DTOs/register.dto';
 
 @Controller()
 export class RegisterController {
@@ -25,10 +26,8 @@ export class RegisterController {
   }
 
   @Post('register')
-  register(
-    @Body('vehicleId') vehicleId: number,
-    @Body('fleetId') fleetId: number,
-  ) {
+  register(@Body() body: registerDTO) {
+    const { vehicleId, fleetId } = body;
     if (typeof vehicleId !== 'number' || typeof fleetId !== 'number') {
       throw new BadRequestException('invalid credentials');
     }

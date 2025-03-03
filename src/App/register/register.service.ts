@@ -1,6 +1,6 @@
 import DomainFleet from 'src/Domain/Entities/Fleet';
 import DomainVehicle from 'src/Domain/Entities/Vehicle';
-import { FleetRepositoryService } from './../../Infra/repository/fleet-repository/fleet-repository.service';
+import { FleetRepositoryService } from 'src/Infra/repository/fleet-repository/fleet-repository.service';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { VehicleRepositoryService } from 'src/infra/repository/vehicle-repository/vehicle-repository.service';
 import DomainRegisterService from 'src/Domain/Services/RegisterService';

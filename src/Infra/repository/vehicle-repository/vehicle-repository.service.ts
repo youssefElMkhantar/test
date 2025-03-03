@@ -1,6 +1,6 @@
 import DomainVehicle from 'src/Domain/Entities/Vehicle';
 import { Injectable } from '@nestjs/common';
-import { Vehicle } from 'src/Infra/Entities/Vehicle.entity';
+import { Vehicle } from '../../Entities/Vehicle.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import VehicleRepository from 'src/Domain/Repositories/Vehicle';
