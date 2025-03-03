@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  # fulllBackend:
+  #   build:
+  #     context: .
+  #   env_file:
+  #     - .env
+  #   ports:
+  #     - '3000:3000'
+  #   networks:
+  #     - mariadb_network
+  #   depends_on:
+  #     - mariadb
+
+  mariadb:
+    image: mariadb:latest
+    container_name: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '3306:3306'
+    volumes:
+      - mariadb_data:/var/lib/mysql
+    networks:
+      - mariadb_network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: php_my_admin
+    restart: always
+    environment:
+      PMA_HOST: mariadb
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - '8080:80'
+    networks:
+      - mariadb_network
+
+volumes:
+  mariadb_data:
+
+networks:
+  mariadb_network:
+    driver: bridge
