@@ -39,3 +39,10 @@ $ npm run start:dev
 $ npm run test:e2e
 
 ```
+
+## phpmyadmin in localhost:8080
+
+```bash
+# password and username in the env file
+
+```
